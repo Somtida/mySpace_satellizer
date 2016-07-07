@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bower_components/sweetalert/dist/sweetalert.css">
+  <link rel="stylesheet" href="/css/bootswatch.min.css">
+  <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/ngSweetAlert/SweetAlert.min.js"></script>
+  <script src="/bower_components/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="/bower_components/satellizer/satellizer.min.js"></script>
+  <script src="/js/module.js"></script>
+  <script src="/js/controllers.js"></script>
+  <script src="/js/services.js"></script>
+
+</head>
+<body ng-app='myApp' ng-controller='mainCtrl'>
+  <div class="container">
+    <!-- <pre>{{currentUser | json}}</pre> -->
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <p class="navbar-text navbar-left">MySpace</p>
+        <ul class="nav navbar-nav navbar-right">
+
+          <li><a class="active" ui-sref='home'>Home</a></li>
+          <li><a class="btn" ui-sref='profile'>MY SPACE</a></li>
+          <li><a ng-if='!isAuthenticated()' class="btn" ui-sref='login'>Login</a></li>
+          <li><a ng-if='!isAuthenticated()' class="btn" ui-sref='register'>Register</a></li>
+          <li><a ng-if='isAuthenticated()'class="btn" ui-sref='register' ng-click="logout()">LogOut</a></li>
+      </div>
+    </nav>
+    <br>
+    <br>
+    <br>
+    <div class="alert alert-info">
+      <h1><%= title %></h1>
+    </div>
+
+    <!-- <div class="alert alert-success" ng-show="currentUser">
+      <span><h3>Hello, {{currentUser.username}}!</h3></span>
+
+    </div> -->
+
+    <div ui-view></div>
+
+  </div>
+</body>
+</html>

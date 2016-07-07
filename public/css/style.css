@@ -1,0 +1,64 @@
+body{
+  text-align: center;
+}
+.textName{
+  color: blue;
+  font-size: 20px;
+}
+/*LOGIN*/
+.panel-heading {
+    padding: 5px 15px;
+}
+
+.panel-footer {
+	padding: 1px 15px;
+	color: #A0A0A0;
+}
+
+.profile-img {
+	width: 96px;
+	height: 96px;
+	margin: 0 auto 10px;
+	display: block;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+
+/*REGISTER*/
+body {
+    background-color: #eee;
+}
+
+*[role="form"] {
+    max-width: 530px;
+    padding: 15px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 0.3em;
+}
+
+*[role="form"] h2 {
+    margin-left: 5em;
+    margin-bottom: 1em;
+}
+
+/*PROFILE*/
+.myProfile{
+  /*padding-top:30px;*/
+  /*text-align: center;*/
+}
+.space{
+  margin-top: 15px;
+}
+.btnCircle{
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  line-height: 20px;
+}
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
