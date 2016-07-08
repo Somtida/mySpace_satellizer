@@ -15,7 +15,7 @@ app.controller('mainCtrl', function($scope, $state, $auth) {
   $scope.authenticate = (provider) => {
     $auth.authenticate(provider)
       .then(res => {
-        $state.go('home');
+        $state.go('profile');
       })
       .catch(err => {
         console.log('err:', err);
@@ -26,7 +26,7 @@ app.controller('mainCtrl', function($scope, $state, $auth) {
 
 
 
-app.controller('profileCtrl', function(Profile, $scope, $state, Message, $auth) {
+app.controller('profileCtrl', function(Profile, $scope, $state, Message, User, $auth) {
   console.log('profileCtrl!');
 
   $scope.user = Profile;
@@ -46,29 +46,29 @@ app.controller('profileCtrl', function(Profile, $scope, $state, Message, $auth) 
     })
 
 
-  // $scope.saveEditProfile = () => {
-  //   console.log("$scope.myInfo: ", $scope.myInfo);
-  //   $auth.edit($scope.myInfo._id, $scope.myInfo)
-  //     .then(res => {
-  //       console.log("res: ",res);
-  //       $scope.editProfileArea = false;
-  //       $scope.profileArea = true;
-  //     })
-  //     .catch(err => {
-  //       console.log("err: ",err);
-  //     })
-  // }
+  $scope.saveEditProfile = () => {
+    console.log("$scope.myInfo: ", $scope.myInfo);
+    User.edit($scope.myInfo._id, $scope.myInfo)
+      .then(res => {
+        console.log("res: ",res);
+        $scope.editProfileArea = false;
+        $scope.profileArea = true;
+      })
+      .catch(err => {
+        console.log("err: ",err);
+      })
+  }
 
-  // $scope.editProfile = () => {
-  //   $scope.editProfileArea = true;
-  //   $scope.profileArea = false;
-  //   $scope.myInfo = $scope.currentUser;
-  // }
+  $scope.editProfile = () => {
+    $scope.editProfileArea = true;
+    $scope.profileArea = false;
+    $scope.myInfo = angular.copy($scope.user);
+  }
 
-  // $scope.cancelEditArea = () => {
-  //   $scope.editProfileArea = false;
-  //   $scope.profileArea = true;
-  // }
+  $scope.cancelEditArea = () => {
+    $scope.editProfileArea = false;
+    $scope.profileArea = true;
+  }
 
   $scope.postMessage = () => {
     let userId = $scope.user._id;

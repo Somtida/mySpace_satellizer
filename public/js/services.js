@@ -42,9 +42,9 @@ app.service('User', function($http, $state, $q) {
   //   $state.go('home');
   // };
   //
-  // this.edit = (userId, newUserObj) => {
-  //   return $http.put(`/api/users/${userId}`, newUserObj);
-  // }
+  this.edit = (userId, newUserObj) => {
+    return $http.put(`/api/users/${userId}`, newUserObj);
+  }
 
 });
 

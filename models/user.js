@@ -15,6 +15,7 @@ let userSchema = new mongoose.Schema({
   dob: String,
   email: String,
   twitter: String,
+  facebookId: String,
   facebook: String,
   gender: String,
   location: String,
@@ -62,8 +63,8 @@ userSchema.statics.register = function(userObj, cb) {
   // Check that the username is not taken
   // Create a new user document
 
-  this.findOne({email: userObj.email}, (err, user) => {
-    if(err || user) return cb(err || {error: 'A user already exists with this email address.'});
+  this.find({email: userObj.email}, (err, email) => {
+    if(err || email) return cb(err || {error: 'A email already exists with this email address.'});
     User.create(userObj, (err, savedUser) => {
       if(err) return cb(err);
 

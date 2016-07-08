@@ -18,6 +18,13 @@ router.get('/', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+  User.findByIdAndUpdate(req.params.id, req.body, (err, user) => {
+    if(err) return res.status(400).send(err || user);
+    res.send(user);
+  });
+});
+
 router.delete('/all', (req, res)=>{
   User.remove({},(err)=>{
     res.status(err ? 400 : 200).send(err);
@@ -39,6 +46,7 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
+  console.log("req.body: ",req.body);
   User.register(req.body, (err, token) => {
     res.status(err ? 400 : 200).send(err || {token: token});
   })
@@ -55,7 +63,7 @@ router.post('/facebook', (req, res) => {
   //    b.  Retrieve an existing user from our database
   //  4.  Generate a JWT and respond with it.
 
-  var fields = ['id', 'email', 'first_name', 'last_name', 'link', 'name', 'picture'];
+  var fields = ['id', 'email', 'picture', 'link', 'name'];
   var accessTokenUrl = 'https://graph.facebook.com/v2.5/oauth/access_token';
   var graphApiUrl = 'https://graph.facebook.com/v2.5/me?fields=' + fields.join(',');
 
@@ -76,7 +84,7 @@ router.post('/facebook', (req, res) => {
 
     //  2.  Use Access Token to request the user's profile.
     request.get({ url: graphApiUrl, qs: accessToken, json: true }, function(err, response, profile) {
-      console.log('profile: ', profile);
+      console.log('profile fb: ', profile);
       if (response.statusCode !== 200) {
         return res.status(400).send({ message: profile.error.message });
       }
@@ -104,12 +112,14 @@ router.post('/facebook', (req, res) => {
 
           // generate the token
           // respond with token
-
+          console.log("profile obj: ",profile);
           let newUser = new User({
             email: profile.email,
             displayName: profile.name,
             profileImage: profile.picture.data.url,
-            facebook: profile.id
+            facebookId: profile.id,
+            facebook: profile.link
+
           });
 
           newUser.save((err, savedUser) => {

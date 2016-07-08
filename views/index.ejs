@@ -33,7 +33,8 @@
           <li><a class="btn" ui-sref='profile'>MY SPACE</a></li>
           <li><a ng-if='!isAuthenticated()' class="btn" ui-sref='login'>Login</a></li>
           <li><a ng-if='!isAuthenticated()' class="btn" ui-sref='register'>Register</a></li>
-          <li><a ng-if='isAuthenticated()'class="btn" ui-sref='register' ng-click="logout()">LogOut</a></li>
+          <li><a ng-if='isAuthenticated()'class="btn" ui-sref='users'>All Users</a></li>
+          <li><a ng-if='isAuthenticated()'class="btn" ng-click="logout()">LogOut</a></li>
       </div>
     </nav>
     <br>
